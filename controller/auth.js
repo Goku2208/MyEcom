@@ -65,6 +65,7 @@ exports.auth = (req, res, next) => {
 
 exports.isAuth = (req, res, next) => {
   req.auth = req.cookies.id;
+  console.log(req.profile);
   let user = req.profile && req.auth && req.profile._id == req.auth;
   if (!user) {
     return res.status(403).json({

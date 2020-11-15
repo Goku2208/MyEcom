@@ -1,9 +1,21 @@
 const express = require("express");
 const router = express.Router();
 
-const { create } = require("../controller/product");
+const {
+  create,
+  productById,
+  read,
+  remove,
+  update,
+} = require("../controller/product");
 const { auth, isAuth, isAdmin } = require("../controller/auth");
 const { userById } = require("../controller/user");
+
+router.get("/product/:productById", read);
+
+router.delete("/product/:productById/:userById", auth, isAuth, isAdmin, remove);
+
+router.put("/product/:productById/:userById", auth, isAuth, isAdmin, update);
 
 router.post(
   "/product/create/:userById",
@@ -17,5 +29,7 @@ router.post(
     });
   }
 );
+
 router.param("userById", userById);
+router.param("productById", productById);
 module.exports = router;

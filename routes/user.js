@@ -10,5 +10,5 @@ router.get("/secret/:userById", auth, isAuth, (req, res) => {
     user: req.profile,
   });
 });
-router.param("userId", userById);
+router.param("userById", userById);
 module.exports = router;
